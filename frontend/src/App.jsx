@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 
-const API_URL = 'http://localhost:5000';
+const API_URL = import.meta.env.VITE_API_URL || 'https://stevo-pos.onrender.com';
 const AUTH_STORAGE_KEY = 'stevo-pos-auth';
 
 const initialProducts = [
