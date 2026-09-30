@@ -2,6 +2,16 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const supabase = require("../config/supabase");
 
+const getJwtSecret = () => {
+  const secret = process.env.JWT_SECRET;
+
+  if (!secret) {
+    throw new Error("JWT_SECRET is missing. Add it to Render Environment Variables or your backend .env file.");
+  }
+
+  return secret;
+};
+
 const generateToken = (user) => {
   return jwt.sign(
     {
@@ -9,7 +19,7 @@ const generateToken = (user) => {
       username: user.username,
       role: user.role,
     },
-    process.env.JWT_SECRET,
+    getJwtSecret(),
     { expiresIn: "1d" }
   );
 };

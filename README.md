@@ -1,5 +1,19 @@
 # STEVO POS Suite
 
+## Standalone Offline Python POS
+
+The workspace includes a self-contained Windows desktop POS in `offline_pos.py`. It uses Python's built-in Tkinter and SQLite libraries, so sales, stock, users, and settings stay on this computer and the app does not contact the web backend or require an internet connection.
+
+To start it, double-click `run_offline_pos.bat`, or run `python offline_pos.py` with Python 3.10 or newer and Tkinter installed. No Python packages need to be installed.
+
+First-run login: `admin` / `admin123`. Change staff access by adding accounts in **Users**. The local database is created at `data/stevo_pos.sqlite3`; keep a backup of that file to preserve sales and inventory. CSV reports and printed receipt text files are also saved locally. M-Pesa and card sales are recorded as payment methods; this offline app does not connect to payment providers.
+
+Checkout supports multi-item baskets, quick product creation, and saving an order as pending. Pending orders reserve stock, appear in the header and dashboard, and can be reviewed from **Orders**; completing one records payment first. Press **F1** for the shortcut list: **F2** or **Ctrl+N** opens checkout, **Ctrl+Shift+P** adds a product, **Ctrl+O** opens orders, **Ctrl+R** opens reports, **Ctrl+F** focuses search, and **F5** refreshes the current screen.
+
+Run the storage and sales-rule tests with `python -m unittest -v test_pos_db`.
+
+## Web POS
+
 STEVO POS Suite is a full-stack point-of-sale dashboard built for retail and inventory management. It combines a React + Vite frontend with an Express backend for user authentication, product catalog management, order handling, reporting, and admin controls.
 
 ## Features
